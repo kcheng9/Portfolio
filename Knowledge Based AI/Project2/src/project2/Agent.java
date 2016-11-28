@@ -176,14 +176,7 @@ public class Agent {
 	        ArrayList<String> attrACC = getAllObjectAttributes(putOrderedObjectsSecond(correspondingObjectsAC));
 	        ArrayList<String> attrBCB = getAllObjectAttributes(putOrderedObjectsFirst(correspondingObjectsBC));
 	        ArrayList<String> attrBCC = getAllObjectAttributes(putOrderedObjectsSecond(correspondingObjectsBC));
-	        
-	/*        System.out.println("attrABA"+attrABA);
-	        System.out.println("attrABB"+attrABB);
-	        System.out.println("attrACA"+attrACA);
-	        System.out.println("attrACC"+attrACC);*/
-/*	        System.out.println("attrBCB"+attrBCB);
-	        System.out.println("attrBCC"+attrBCC);*/
-	        
+
 	        
 	        //somehow get them to compare A objects to B objects and C objects IN ORDER
 	        //THEN do the matchup of the attributes
