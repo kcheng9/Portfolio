@@ -1,0 +1,51 @@
+Big Data projects build on each other ending in a final project.
+Each of these begins with a data set that is transformed using Big Data tools.
+Below is a short explanation of each:
+
+Project:
+Projects were individual and could be on any topic.
+My project was to create a predictive model for predicting septic shock in hospitals.
+Septic shock is an infection that can quickly lead to death if not treated,
+but is easily treatable by giving the patient fluids if caught early.
+The goal of this model is to be able to help catch the infection earlier in order to prevent hospital deaths due to septic shock.
+Raw data was gathered from an online medical database (MIMIC III).
+Then it was pre-filtered and cleaned using PostgresSQL.
+Data processing was done using Spark and the ML Library (machine learning).
+More information on exact methods used can be found in the paper "Project Final.pdf".
+Code used can be found in the submission folder.
+
+Homework 1:
+Given raw data in CSV files of event sequences containing
+patient number, diagnosis code, diagnosis name, date, and diagnosis measurement,
+use these to create and compare predictive models for whether a patient is alive or dead.
+The raw data is filtered into usable data,
+then split into observation window (time that a patient's events are observed)
+and prediction window (time when the prediction must be made of alive or dead per patient).
+Then values are filtered and calculated into aggregate values per patient.
+They are then reformatted into a format usable by available modeling libraries
+(logistic regression, SVM, and Decision Tree).
+Each model was then cross-validated to determine performance of the model. 
+Code can be found in the code folder.
+
+Homework 2:
+Use Big Data tools to find descriptive statistics and transform the data to be analyzed.
+Use HIVE to compute various metrics in the data. 
+Use PIG to transform the data into usable data 
+(similar to in Homework 1 where it is separated into different windows and filtered / calculated and formatted into the correct format). 
+Use Hadoop to train multiple logistic regression classifiers 
+(similar to Homework 1 but adding Hadoop for parallel processing). 
+Compare classifiers that did not use Hadoop and did use Hadoop. 
+Code can be found in the code folder.
+
+Homework 3:
+Use rule-based phenotyping to classify patients with Diabetes Mellitus Type 2 from ones who do not have it. 
+These are then separated to that patients are grouped as case and control in order to do testing.
+Use different types of clustering to do unsupervised phenotyping (K-Means, Gaussian Mixture, NMF). 
+Code can be found in the src folder.
+
+Homework 4:
+Use Big Data tools and strategies to group patients and find patient similarities. 
+Create a heterogeneous patient graph using Spark GraphX. 
+Compute the Jaccard coefficient comparing patients to other patients to find how similar or dissimilar patients are. 
+Use Power Iteration Clustering to cluster patients. 
+Code can be found in the src folder.
