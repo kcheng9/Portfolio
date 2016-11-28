@@ -212,10 +212,6 @@ public class Agent {
 		boolCompBs.add(boolCompB4);
 		boolCompBs.add(boolCompB5);
 		boolCompBs.add(boolCompB6);		
-		
-		System.out.println(boolCompCChoices(boolCompAB, boolCompCs));
-		System.out.println(boolCompBChoices(boolCompAC, boolCompBs));
-		System.out.println(boolChoices(boolCompAB, boolCompAC, boolCompCs, boolCompBs));*/
     	
 /*    	String affineTransform = affineCompare(figureAImage, figureBImage);
     	BufferedImage solnShould = applyToC(figureBImage, figureCImage, affineTransform);
@@ -276,9 +272,6 @@ public class Agent {
         	blackArraySolns.add(black5);
         	blackArraySolns.add(black6);
         	
-        	//System.out.println(blackArrayProbs);
-        	//System.out.println(blackArraySolns);
-        	
         	soln = Integer.toString(solnFinder3x3(blackArrayProbs, blackArraySolns));
     	}
     	return soln;
@@ -331,8 +324,6 @@ public class Agent {
     		
     	}
     	
-    	//System.out.println(likeDiags);
-    	
     	for (int j = 0; j < likeA.size(); j++){
     		if (likeA.get(j) <= 1){
     			
@@ -363,8 +354,6 @@ public class Agent {
     	if (likeDiagsCount == 0){
     		soln = blackSoln3x3(blackArraySolns, blackArrayProbs.get(0));
     	}
-    	
-    	//System.out.println(soln);
     	
     	if (soln == -1){
     		if (blackArrayProbs.get(0) < blackArrayProbs.get(1) && blackArrayProbs.get(1) < blackArrayProbs.get(2)
@@ -397,13 +386,7 @@ public class Agent {
     	return soln;
     }
     
-/*    private ArrayList<Double> blackDiff3x3(double blackA, double blackB, double blackC, double blackD, double blackE, double blackF, double blackG, double blackH, 
-    		double black1, double black2, double black3, double black4, double black5, double black6){
-    	
-    	ArrayList<Double> diffs = new ArrayList<Double>();
-    	
-    }*/
-    
+    //Create the shape in a boolean array for easier comparison.
     private boolean[][] boolPoints(ArrayList<Point> shape){
     	
     	boolean[][] boolPoints = new boolean[184][184];
@@ -416,6 +399,7 @@ public class Agent {
     	return boolPoints;
     }
     
+    //Figure out what the shape is and create it
     private ArrayList<Point> shapeIdent(boolean[][] figure){
     	ArrayList<Point> shape = new ArrayList<Point>();
     	
@@ -432,6 +416,7 @@ public class Agent {
     	return shape;
     }
     
+    //Adjusted percentage in color
     private ArrayList<Double> adjustPercentRGB (ArrayList<Double> calcDiff, BufferedImage imgA, BufferedImage imgB,
     		BufferedImage imgC, BufferedImage img1, BufferedImage img2, BufferedImage img3, BufferedImage img4, BufferedImage img5, BufferedImage img6){
     	
@@ -439,7 +424,7 @@ public class Agent {
     	
     	int x = imgA.getWidth()/2;
     	int y = imgA.getHeight()/2;
-    	//System.out.println("calcDiff"+calcDiff);
+
     	if (imgA.getRGB(x,y) == -1){
     		if (imgB.getRGB(x,y) == -1){
         		if (imgC.getRGB(x,y) == -1 && img1.getRGB(x,y) == -1){
@@ -524,10 +509,11 @@ public class Agent {
         		}
     		}
     	}
-    	//System.out.println("adjustPe" + adjustPercent);
+
     	return adjustPercent;
     }
     
+    //Comparing the images with black and white.
     private ArrayList<Integer> boolChoices(double boolCompAB, double boolCompAC, ArrayList<Double> boolCompCs, ArrayList<Double> boolCompBs){
     	ArrayList<Integer> boolChoices = new ArrayList<Integer>();
     	
@@ -549,6 +535,7 @@ public class Agent {
     	return boolChoices;
     }
     
+    //Comparison of differences between AB and C.
     private ArrayList<Integer> boolCompBChoices(double boolCompAB, ArrayList<Double> boolCompCs){
     	ArrayList<Integer> boolCompCChoices = new ArrayList<Integer>();
     	
@@ -561,6 +548,7 @@ public class Agent {
     	return boolCompCChoices;
     }
     
+    //Comparison of choices between AC and B.
     private ArrayList<Integer> boolCompCChoices(double boolCompAB, ArrayList<Double> boolCompCs){
     	ArrayList<Integer> boolCompCChoices = new ArrayList<Integer>();
     	
@@ -573,6 +561,7 @@ public class Agent {
     	return boolCompCChoices;
     }
     
+    //Comparing two black and white figures.
     private double boolComp(boolean[][] figure1, boolean[][] figure2){
     	double pct;
     	double oneCount = 0.0, twoCount = 0.0;
@@ -593,6 +582,7 @@ public class Agent {
     	return pct;
     }
     
+    //Count the number of black pixels.
     private int countBools(boolean[][] expected, boolean[][] figure){
     	int countExp = 0;
     	int countFig = 0;
@@ -613,6 +603,7 @@ public class Agent {
     	return count;
     }
     
+    //Compare the different solutions.
     private int compareCs(BufferedImage solnShould, BufferedImage fig1, BufferedImage fig2, BufferedImage fig3, BufferedImage fig4, 
     		BufferedImage fig5, BufferedImage fig6){
     	
@@ -634,6 +625,7 @@ public class Agent {
     	return Cs.indexOf(Collections.min(Cs))+1;
     }
     
+    //Apply the transformation to C.
     private BufferedImage applyToC(BufferedImage figureB, BufferedImage figureC, String affineCompare){
     	if (affineCompare == "identity"){
     		return figureC;
@@ -664,6 +656,7 @@ public class Agent {
     	}
     }
     
+    //Apply the affine transformation and compare.
     private String affineCompare(BufferedImage origFigure, BufferedImage figure2){
     	
     	BufferedImage identity = figure2;
@@ -725,6 +718,7 @@ public class Agent {
     	
     }
     
+    //Find the differences between the affine transformations.
     private ArrayList<Double> affineDiffArray(double diffAB, double diffC1, double diffC2, double diffC3, double diffC4, double diffC5, double diffC6, double diffC7){
     	ArrayList<Double> diffCs = new ArrayList<Double>();
 	
@@ -736,8 +730,6 @@ public class Agent {
 		diffCs.add(diffC6);
 		diffCs.add(diffC7);
 	
-	//System.out.println("diffCs"+diffCs);
-	
 		ArrayList<Double> diff = new ArrayList<Double>();
 		for (int i = 0; i < 7; i++){
 			diff.add(Math.abs(diffCs.get(i)));
@@ -746,6 +738,7 @@ public class Agent {
 		return diff;
     }
     
+    //Flip transformation.
     private BufferedImage affineFlip(BufferedImage figure){
     	int w = figure.getWidth();
     	int h = figure.getHeight();
@@ -762,6 +755,7 @@ public class Agent {
     	return after;
     }
     
+    //Rotate transformation.
     private BufferedImage affineRotate(int angle, BufferedImage figure){
     	int w = figure.getWidth();
     	int h = figure.getHeight();
@@ -774,33 +768,10 @@ public class Agent {
     	AffineTransformOp scaleOp = new AffineTransformOp(at, AffineTransformOp.TYPE_BILINEAR);
     	after = scaleOp.filter(figure, after);
     	
-/*    	for (int i = 0; i <= w/4; i++){
-    		for (int j = 0; j <= h/4; j++){
-    			after.setRGB(i, j, -1);
-    		}
-    	}
-    	
-    	for (int k = 3*w/4; k < w; k++){
-    		for (int l = 3*h/4; l < h; l++){
-    			after.setRGB(k,l,-1);
-    		}
-    	}
-    	
-    	for (int k = 3*w/4; k < w; k++){
-    		for (int l = 0; l < h/4; l++){
-    			after.setRGB(k,l,-1);
-    		}
-    	}
-    	
-    	for (int k = 0; k < w/4; k++){
-    		for (int l = 3*h/4; l < h; l++){
-    			after.setRGB(k,l,-1);
-    		}
-    	}*/
-    	
     	return after;
     }
     
+    //Choose the closest matching    
     private String pickBool(boolean[][] expected, boolean[][] figure1, boolean[][] figure2, boolean[][] figure3,
     		boolean[][] figure4, boolean[][] figure5, boolean[][] figure6){
     	
@@ -819,6 +790,7 @@ public class Agent {
     	
     }
     
+    //For easier viewing of the figure.
     private void printBoolFigure(boolean[][] figure){
     	for (int i = 0; i< figure.length; i+=4){
     		System.out.println("");
@@ -834,6 +806,7 @@ public class Agent {
     	}
     }
     
+    //Compare the solutions to the ideal.
     private boolean[][] expectedSoln(boolean[][] figureABool, boolean[][] figureBBool, boolean[][] figureCBool){
     	
     	int width = figureABool.length;
@@ -858,7 +831,7 @@ public class Agent {
     	return expected;
     }
     
-    
+    //Find the percent difference of black pixels between two images.
     private double percentDiffBlack(BufferedImage image1, BufferedImage image2){
     	int width1 = image1.getWidth(null);
         int width2 = image2.getWidth(null);
@@ -885,11 +858,11 @@ public class Agent {
         }
         double n = width1 * height1 * 3;
         double p = diff / n / 255.0;
-        //System.out.println("diff percent: " + (p * 100.0));
         
         return p*100.0;
     }
     
+    //Find the adjusted percent of RGB images.
     private ArrayList<Double> adjustPercent (ArrayList<Double> blackDiff, BufferedImage imgA, BufferedImage imgB,
     		BufferedImage imgC, BufferedImage img1, BufferedImage img2, BufferedImage img3, BufferedImage img4, BufferedImage img5, BufferedImage img6){
     	
@@ -940,196 +913,19 @@ public class Agent {
     		}
     	}
     	
-/*    	x = imgA.getHeight()/4;
-    	y = imgA.getWidth()/4;
-    	
-    	if (imgA.getRGB(x, y) == imgB.getRGB(x,y)){
-    		//System.out.println("This happened");
-    		if (imgC.getRGB(x,y) == img1.getRGB(x,y)){
-    			adjustPercent.set(0, blackDiff.get(0)/1000);
-    		}
-    		if (imgC.getRGB(x,y) == img2.getRGB(x,y)){
-    			adjustPercent.set(1, blackDiff.get(1)/1000);
-    		}
-    		if (imgC.getRGB(x,y) == img3.getRGB(x,y)){
-    			adjustPercent.set(2, blackDiff.get(2)/1000);
-    		}
-    		if (imgC.getRGB(x,y) == img4.getRGB(x,y)){
-    			adjustPercent.set(3, blackDiff.get(3)/1000);
-    		}
-    		if (imgC.getRGB(x,y) == img5.getRGB(x,y)){
-    			adjustPercent.set(4, blackDiff.get(4)/1000);
-    		}
-    		if (imgC.getRGB(x,y) == img6.getRGB(x,y)){
-    			adjustPercent.set(5, blackDiff.get(5)/1000);
-    		}
-    	}
-    	else{
-    		if (imgC.getRGB(x,y) != img1.getRGB(x,y)){
-    			adjustPercent.set(0, blackDiff.get(0)/1000);
-    		}
-    		if (imgC.getRGB(x,y) != img2.getRGB(x,y)){
-    			adjustPercent.set(1, blackDiff.get(1)/1000);
-    		}
-    		if (imgC.getRGB(x,y) != img3.getRGB(x,y)){
-    			adjustPercent.set(2, blackDiff.get(2)/1000);
-    		}
-    		if (imgC.getRGB(x,y) != img4.getRGB(x,y)){
-    			adjustPercent.set(3, blackDiff.get(3)/1000);
-    		}
-    		if (imgC.getRGB(x,y) != img5.getRGB(x,y)){
-    			adjustPercent.set(4, blackDiff.get(4)/1000);
-    		}
-    		if (imgC.getRGB(x,y) != img6.getRGB(x,y)){
-    			adjustPercent.set(5, blackDiff.get(5)/1000);
-    		}
-    	}*/
-    	
-    	/*x = imgA.getHeight()/4*3;
-    	y = imgA.getWidth()/4*3;
-    	
-    	if (imgA.getRGB(x, y) == imgB.getRGB(x,y)){
-    		//System.out.println("This happened");
-    		if (imgC.getRGB(x,y) == img1.getRGB(x,y)){
-    			adjustPercent.set(0, blackDiff.get(0)/3000);
-    		}
-    		if (imgC.getRGB(x,y) == img2.getRGB(x,y)){
-    			adjustPercent.set(1, blackDiff.get(1)/3000);
-    		}
-    		if (imgC.getRGB(x,y) == img3.getRGB(x,y)){
-    			adjustPercent.set(2, blackDiff.get(2)/3000);
-    		}
-    		if (imgC.getRGB(x,y) == img4.getRGB(x,y)){
-    			adjustPercent.set(3, blackDiff.get(3)/3000);
-    		}
-    		if (imgC.getRGB(x,y) == img5.getRGB(x,y)){
-    			adjustPercent.set(4, blackDiff.get(4)/3000);
-    		}
-    		if (imgC.getRGB(x,y) == img6.getRGB(x,y)){
-    			adjustPercent.set(5, blackDiff.get(5)/3000);
-    		}
-    	}
-    	else{
-    		if (imgC.getRGB(x,y) != img1.getRGB(x,y)){
-    			adjustPercent.set(0, blackDiff.get(0)/3000);
-    		}
-    		if (imgC.getRGB(x,y) != img2.getRGB(x,y)){
-    			adjustPercent.set(1, blackDiff.get(1)/3000);
-    		}
-    		if (imgC.getRGB(x,y) != img3.getRGB(x,y)){
-    			adjustPercent.set(2, blackDiff.get(2)/3000);
-    		}
-    		if (imgC.getRGB(x,y) != img4.getRGB(x,y)){
-    			adjustPercent.set(3, blackDiff.get(3)/3000);
-    		}
-    		if (imgC.getRGB(x,y) != img5.getRGB(x,y)){
-    			adjustPercent.set(4, blackDiff.get(4)/3000);
-    		}
-    		if (imgC.getRGB(x,y) != img6.getRGB(x,y)){
-    			adjustPercent.set(5, blackDiff.get(5)/3000);
-    		}
-    	}*/
-    	
-    	/*x = imgA.getHeight()/4*3;
-    	y = imgA.getWidth()/4;
-    	
-    	if (imgA.getRGB(x, y) == imgB.getRGB(x,y)){
-    		//System.out.println("This happened");
-    		if (imgC.getRGB(x,y) == img1.getRGB(x,y)){
-    			adjustPercent.set(0, blackDiff.get(0)/3000);
-    		}
-    		if (imgC.getRGB(x,y) == img2.getRGB(x,y)){
-    			adjustPercent.set(1, blackDiff.get(1)/3000);
-    		}
-    		if (imgC.getRGB(x,y) == img3.getRGB(x,y)){
-    			adjustPercent.set(2, blackDiff.get(2)/3000);
-    		}
-    		if (imgC.getRGB(x,y) == img4.getRGB(x,y)){
-    			adjustPercent.set(3, blackDiff.get(3)/3000);
-    		}
-    		if (imgC.getRGB(x,y) == img5.getRGB(x,y)){
-    			adjustPercent.set(4, blackDiff.get(4)/3000);
-    		}
-    		if (imgC.getRGB(x,y) == img6.getRGB(x,y)){
-    			adjustPercent.set(5, blackDiff.get(5)/3000);
-    		}
-    	}
-    	else{
-    		if (imgC.getRGB(x,y) != img1.getRGB(x,y)){
-    			adjustPercent.set(0, blackDiff.get(0)/3000);
-    		}
-    		if (imgC.getRGB(x,y) != img2.getRGB(x,y)){
-    			adjustPercent.set(1, blackDiff.get(1)/3000);
-    		}
-    		if (imgC.getRGB(x,y) != img3.getRGB(x,y)){
-    			adjustPercent.set(2, blackDiff.get(2)/3000);
-    		}
-    		if (imgC.getRGB(x,y) != img4.getRGB(x,y)){
-    			adjustPercent.set(3, blackDiff.get(3)/3000);
-    		}
-    		if (imgC.getRGB(x,y) != img5.getRGB(x,y)){
-    			adjustPercent.set(4, blackDiff.get(4)/3000);
-    		}
-    		if (imgC.getRGB(x,y) != img6.getRGB(x,y)){
-    			adjustPercent.set(5, blackDiff.get(5)/3000);
-    		}
-    	}*/
-    	
-/*    	x = imgA.getHeight()/4;
-    	y = imgA.getWidth()/4*3;
-    	
-    	if (imgA.getRGB(x, y) == imgB.getRGB(x,y)){
-    		//System.out.println("This happened");
-    		if (imgC.getRGB(x,y) == img1.getRGB(x,y)){
-    			adjustPercent.set(0, blackDiff.get(0)/3000);
-    		}
-    		if (imgC.getRGB(x,y) == img2.getRGB(x,y)){
-    			adjustPercent.set(1, blackDiff.get(1)/3000);
-    		}
-    		if (imgC.getRGB(x,y) == img3.getRGB(x,y)){
-    			adjustPercent.set(2, blackDiff.get(2)/3000);
-    		}
-    		if (imgC.getRGB(x,y) == img4.getRGB(x,y)){
-    			adjustPercent.set(3, blackDiff.get(3)/3000);
-    		}
-    		if (imgC.getRGB(x,y) == img5.getRGB(x,y)){
-    			adjustPercent.set(4, blackDiff.get(4)/3000);
-    		}
-    		if (imgC.getRGB(x,y) == img6.getRGB(x,y)){
-    			adjustPercent.set(5, blackDiff.get(5)/3000);
-    		}
-    	}
-    	else{
-    		if (imgC.getRGB(x,y) != img1.getRGB(x,y)){
-    			adjustPercent.set(0, blackDiff.get(0)/3000);
-    		}
-    		if (imgC.getRGB(x,y) != img2.getRGB(x,y)){
-    			adjustPercent.set(1, blackDiff.get(1)/3000);
-    		}
-    		if (imgC.getRGB(x,y) != img3.getRGB(x,y)){
-    			adjustPercent.set(2, blackDiff.get(2)/3000);
-    		}
-    		if (imgC.getRGB(x,y) != img4.getRGB(x,y)){
-    			adjustPercent.set(3, blackDiff.get(3)/3000);
-    		}
-    		if (imgC.getRGB(x,y) != img5.getRGB(x,y)){
-    			adjustPercent.set(4, blackDiff.get(4)/3000);
-    		}
-    		if (imgC.getRGB(x,y) != img6.getRGB(x,y)){
-    			adjustPercent.set(5, blackDiff.get(5)/3000);
-    		}
-    	}*/
+
     	return adjustPercent;
     	
     }
     
+    //Get the closest solution.
     private int blackDiffSoln(ArrayList<Double> blackDiff){
     	return blackDiff.indexOf(Collections.min(blackDiff));
     }
     
+    //Find the difference between solutions.
     private ArrayList<Double> blackDiff(double a, double b, double c, double c1, double c2, double c3, double c4, double c5, double c6){
     	double ab = Math.abs(a-b);
-    	//System.out.println("ab"+ab);
     	ArrayList<Double> cs = new ArrayList<Double>();
     	cs.add(Math.abs(c-c1));
     	cs.add(Math.abs(c-c2));
@@ -1137,13 +933,14 @@ public class Agent {
     	cs.add(Math.abs(c-c4));
     	cs.add(Math.abs(c-c5));
     	cs.add(Math.abs(c-c5));
-    	//System.out.println("cs"+cs);
     	for (int i = 0; i < cs.size(); i++){
     		cs.set(i, Math.abs(cs.get(i)-ab));
     	}
     	
     	return cs;
     }
+    
+    //Find the black pixels.
     private double findBlacks(BufferedImage img){
     	final int xmin = img.getMinX();
     	final int ymin = img.getMinY();
@@ -1172,6 +969,7 @@ public class Agent {
     	return percent;
     }
     
+    //Get the differences
     private ArrayList<Double> calcDiffArray(double diffAB, double diffC1, double diffC2, double diffC3, double diffC4, double diffC5, double diffC6){
     	ArrayList<Double> diffCs = new ArrayList<Double>();
 	
@@ -1182,8 +980,6 @@ public class Agent {
 		diffCs.add(diffC5);
 		diffCs.add(diffC6);
 	
-	//System.out.println("diffCs"+diffCs);
-	
 		ArrayList<Double> diff = new ArrayList<Double>();
 		for (int i = 0; i < 6; i++){
 			diff.add(Math.abs(diffAB-diffCs.get(i)));
@@ -1192,9 +988,8 @@ public class Agent {
 		return diff;
     }
     
+    //Helper for calculating the differences.
     private double calcDiff(double diffAB, double diffC1, double diffC2, double diffC3, double diffC4, double diffC5, double diffC6){
-    	
-    	//System.out.println("diffAB"+diffAB);
     	
     	ArrayList<Double> diffCs = new ArrayList<Double>();
     	
@@ -1205,20 +1000,16 @@ public class Agent {
     	diffCs.add(diffC5);
     	diffCs.add(diffC6);
     	
-    	//System.out.println("diffCs"+diffCs);
-    	
     	ArrayList<Double> diff = new ArrayList<Double>();
     	for (int i = 0; i < 6; i++){
     		diff.add(Math.abs(diffAB-diffCs.get(i)));
     	}
     	
-    	//System.out.println(diff);
-    	//System.out.println(diff.indexOf(Collections.max(diff)));
-    	
     	return diff.indexOf(Collections.min(diff));
     	
     }
     
+    //Find the differences between blakc and white.
     private double negDiffs(BufferedImage img1, BufferedImage img2){
     	int w1 = img1.getWidth();
     	int w2 = img2.getWidth();
@@ -1241,6 +1032,8 @@ public class Agent {
     	return diff;
     }
     
+    
+    //Find the percentage difference.
     private double percentDiff(BufferedImage figureAImage, BufferedImage figureBImage){
     	int width1 = figureAImage.getWidth(null);
         int width2 = figureBImage.getWidth(null);
@@ -1269,11 +1062,11 @@ public class Agent {
         }
         double n = width1 * height1 * 3;
         double p = diff / n / 255.0;
-        //System.out.println("diff percent: " + (p * 100.0));
         
         return p;
     }
     
+    //Convert RGB to black and white.
     private boolean[][] changeToBlackWhite(BufferedImage image){
     	int width = image.getWidth();
     	int height = image.getHeight();
@@ -1294,6 +1087,7 @@ public class Agent {
     	return imageBool;
     }
     
+    //Convert color to a byte array.
     private byte[] convertToByte(BufferedImage image) throws IOException{
     	
     	ByteArrayOutputStream baos = new ByteArrayOutputStream();
