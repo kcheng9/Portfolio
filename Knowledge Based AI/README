@@ -5,8 +5,8 @@ Problems are formatted in 2x1, 2x2, or 3x3 problems.
 2x2 problems appear as a 2x2 grid where Image A and Image B are in the top row, and Image C and ? are in the bottom row.
 3x3 problems appear as a 3x3 grid expanded from the 2x2 grid where the AI chooses the bottom right corner image.
 
-Each project evolves on the last. Projects 1 and 2 use text-translations of the images.
-Project 3 and 4 use the images themselves.
+Each project evolves on the last. Project 2 uses text-translations of the images.
+Project 4 uses the images themselves.
 
 For each project, navigate to the src folder.
 
