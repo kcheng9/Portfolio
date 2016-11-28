@@ -1,0 +1,13 @@
+Knowledge Based AI projects all deal with taking a multiple-choice test.
+These tests are image based. The goal is to choose the next image in a sequence.
+Problems are formatted Image A : Image B  Image C : ? where the AI must choose ?.
+
+Each project evolves on the last. Projects 1 and 2 use text-translations of the images.
+Project 3 and 4 use the images themselves.
+
+For each project, navigate to the src folder.
+
+Run Project#.java to run the project.
+Agent.java contains the AI Logic.
+See Results.txt in the Project# folder to view printed results of the test.
+See Project#Report.pdf to view thought process and results discussion.
