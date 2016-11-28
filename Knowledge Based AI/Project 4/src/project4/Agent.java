@@ -67,6 +67,8 @@ public class Agent {
      */
     public String Solve(VisualRavensProblem problem) {
     	String soln = "1";
+    	
+    	//Put figures into a HashMap for the Agent to read
 
     	HashMap<String, VisualRavensFigure> figures = problem.getFigures();
     	
@@ -104,6 +106,7 @@ public class Agent {
     		
     	}
     	
+    	//Calculate the percent difference between Image A and Image B, then between Image C and all other Images.
     	
     	double diffAB = percentDiff(figureAImage, figureBImage);
     	double diffC1 = percentDiff(figureCImage, figure1Image);
@@ -119,9 +122,6 @@ public class Agent {
     	ArrayList<Double> adjustPercentRGB = adjustPercentRGB(calcDiffArray, figureAImage, figureBImage, figureCImage, figure1Image, figure2Image, figure3Image,
     			figure4Image, figure5Image, figure6Image);
     	
-    	//if (problem.getProblemType().equals("2x2 (Image)")){
-    		//soln = Integer.toString(calcDiff);
-    	//}
     	
     	soln = Integer.toString(blackDiffSoln(adjustPercentRGB)+1);
     		
@@ -145,6 +145,9 @@ public class Agent {
 	    	int adjustPercentSoln = blackDiffSoln(adjustPercent)+1;
     		soln = Integer.toString(adjustPercentSoln);
     	}
+    	
+    	//Other strategy for calculation of percentage
+    	
 /*    	double percentDiffAB = percentDiffBlack(figureAImage, figureBImage);
     	double percentDiffC1 = percentDiffBlack(figureCImage, figure1Image);
     	double percentDiffC2 = percentDiffBlack(figureCImage, figure2Image);
@@ -157,6 +160,8 @@ public class Agent {
     	
     	soln = Integer.toString(calcDiffBlack);*/
     	
+    	//Show each figure in black and white.
+    	
     	boolean[][] figureABool = changeToBlackWhite(figureAImage);
     	boolean[][] figureBBool = changeToBlackWhite(figureBImage);
     	boolean[][] figureCBool = changeToBlackWhite(figureCImage);
@@ -167,8 +172,7 @@ public class Agent {
     	boolean[][] figure5Bool = changeToBlackWhite(figure5Image);
     	boolean[][] figure6Bool = changeToBlackWhite(figure6Image);/*
     	
-    	//printBoolFigure(expectedSoln(figureABool, figureBBool, figureCBool));
-    	
+    	//Strategies for calculation black and white percentages.    	
     	
     	boolean[][] expectedSoln = expectedSoln(figureABool, figureBBool, figureCBool);
     	
@@ -217,37 +221,7 @@ public class Agent {
     	BufferedImage solnShould = applyToC(figureBImage, figureCImage, affineTransform);
     	soln = Integer.toString(compareCs(solnShould, figure1Image, figure2Image, figure3Image, figure4Image, figure5Image, figure6Image));*/
     	
-    	if(problem.getName().equals("2x2 Basic Problem 05")){
-/*    		printBoolFigure(figureABool);
-    		System.out.println("");
-    		printBoolFigure(figureBBool);
-    		System.out.println("");
-    		System.out.println(affineTransform);
-    		System.out.println("");
-    		printBoolFigure(changeToBlackWhite(solnShould));*/
-    		//printBoolFigure(changeToBlackWhite(affineCompare(figureAImage, figureBImage)));
-/*    		printBoolFigure(figureABool);
-    		System.out.println("");
-    		printBoolFigure(figureBBool);
-    		System.out.println("");
-    		printBoolFigure(figureCBool);
-    		System.out.println("");
-    		printBoolFigure(expectedSoln);*/
-/*    		System.out.println(figureAImage.getRGB(100, 100));
-    		System.out.println(figureBImage.getRGB(100, 100));
-    		System.out.println(figureCImage.getRGB(100, 100));
-    		System.out.println(figure1Image.getRGB(100, 100));*/
-    	}
-    	
-    	
-    	
-/*    	ArrayList<Double> adjustPercent = adjustPercent(blackDiff, figureAImage, figureBImage, figureCImage, figure1Image, figure2Image, figure3Image,
-    			figure4Image, figure5Image, figure6Image);
-    	int adjustPercentSoln = blackDiffSoln(adjustPercent)+1;
-    	
-    	if (problem.getProblemType().equals("2x1 (Image)")){
-    		soln = Integer.toString(adjustPercentSoln);
-    	}*/
+
     	
     	if(problem.getProblemType().equals("3x3 (Image)")){
     		soln = Integer.toString(blackDiffSoln);
@@ -310,6 +284,7 @@ public class Agent {
     	return soln;
     }
     
+    /* Find the closest match for the solution */
     private int blackSoln3x3(ArrayList<Double> blackSolns, double closest){
     	ArrayList<Double> solns = new ArrayList<Double>();
     	
@@ -320,6 +295,7 @@ public class Agent {
     	return solns.indexOf(Collections.min(solns)) +1;
     }
     
+    /* Used to find solutions for 3x3 problems */
     private int solnFinder3x3(ArrayList<Double> blackArrayProbs, ArrayList<Double> blackArraySolns){
     	
     	ArrayList<Double> likeA = new ArrayList<Double>();
